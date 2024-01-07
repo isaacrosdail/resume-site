@@ -1,8 +1,8 @@
 # Interactive Resume Site
-Website built using Flask/SQL to showcase my skills, projects, and experience
+Website built using Flask/SQL to showcase my skills, projects, and experience.
 
 ## Description
-A responsive, interactive website built with Flask and SQL that functions as a digital resume to showcase my professional skills, projects, and experience with software development
+A responsive, interactive website built with Flask and SQL that functions as a digital resume to showcase my professional skills, projects, and experience with software development.
 
 ## Features
 - Professional profile overview
@@ -21,7 +21,7 @@ A responsive, interactive website built with Flask and SQL that functions as a d
 - **Deployment**: TBD (Heroku, AWS, ?)
 
 ## License
-This project is lincensed under the Apache License 2.0 - see LICENSE file for details
+This project is lincensed under the Apache License 2.0 - see LICENSE file for details.
 
 ## Acknowledgements
 - etc. etc.
