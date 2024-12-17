@@ -1,5 +1,9 @@
 # Interactive Resume Site
 Website built using Flask/SQL to showcase my skills, projects, and experience.
+To showcase:
+- Copy of Resume
+- Translation portfolio
+- ??
 
 ## Description
 A responsive, interactive website built with Flask and SQL that functions as a digital resume to showcase my professional skills, projects, and experience with software development.
