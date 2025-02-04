@@ -21,9 +21,9 @@ A responsive, interactive website built with Flask and SQL that functions as a d
 ## Tech Stack
 - **Frontend**: HTML/CSS (Bootstrap for responsive design), JavaScript (for interactivity)
 - **Backend**: Flask Python web framework
-- **Database**: SQL
-- **Deployment**: TBD (Heroku, AWS, ?)
-
+- **Database**: SQLite
+- **Deployment**: Linode (for now, later: AWS) (Manual SSH to update, later use CD/CI GitHub Actions)
+  
 ## License
 This project is lincensed under the Apache License 2.0 - see LICENSE file for details.
 
