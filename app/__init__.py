@@ -1,17 +1,12 @@
 from flask import Flask, render_template
 
-# Create instance of a Flask web app
-app = Flask(__name__)
+# Import Blueprints for routes
+from .main.routes import main
+from .auth.routes import auth
 
-# Homepage
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-# Contact page
-@app.route("/contact")
-def contact():
-    return "<p>Hello! Welcome to the Contact page!</p>"
-    
-if __name__ == "__main__":
-    app.run()
+def create_app():
+    app = Flask(__name__) # Create instance of a Flask web app
+    app.secret_key = "secret-key"
+    app.register_blueprint(main)
+    app.register_blueprint(auth)
+    return app
