@@ -4,22 +4,35 @@
 const langToggle = document.getElementById("language-toggle");
 
 const langSelect = document.getElementById("lang-select");
-const gerSelect = document.getElementById("german");
-const engSelect = document.getElementById("english");
+
 langToggle.onclick = () => {
 
+    console.log("Language toggle clicked!");
     // Reveal dropdown menu
     langSelect.classList.remove("hidden");
-    gerSelect.onclick = () => {
-        document.cookie = "lang=de; path=/"; // Set cookie for lang to DE
-        location.reload();                   // Reload to apply change
-    }
-    engSelect.onclick = () => {
-        document.cookie = "lang=en; path=/";
-        location.reload();
-    }
-    // document.cookie = "firstName=SpongeBob"
+    console.log("Dropdown shown!");
 
-    //console.log(document.cookie);
-    //alert(document.cookie);
+    const gerSelect = document.getElementById("toggle-de");
+    const engSelect = document.getElementById("toggle-en");
+    
+    if (gerSelect) {
+        gerSelect.onclick = () => {
+            document.cookie = "lang=de; path=/"; // Set cookie for lang to DE
+            location.reload();                   // Reload to apply change
+        }
+    }
+    if (engSelect) {
+        engSelect.onclick = () => {
+            document.cookie = "lang=en; path=/";
+            location.reload();
+        }
+    }
+    // Close dropdown if clicking anywhere outside of it
+    // DIVE IN TO HOW THIS WORKS EXACTLY LATER
+    document.addEventListener("click", (e) => {
+        if (!langSelect.contains(e.target) && !langToggle.contains(e.target)) {
+            langSelect.classList.add("hidden");
+        }
+    });
+
 }

@@ -6,3 +6,14 @@
 .hidden {
     display: none;
 }
+#language-toggle {
+    cursor: pointer;
+}
+.dropdown {
+    background-color: black;
+    box-shadow: 0 4x 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    min-width: 30px;
+    z-index: 1000;
+    cursor: pointer;
+}

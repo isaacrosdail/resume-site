@@ -25,14 +25,17 @@
                 </div>
                 <!-- Language toggle button/dropdown -->
                 <div class="d-flex align-items-center text-light">
-                    <span class="me-2" id="language-toggle">
-                        {{ lang.upper() }}
-                    </span>
-                    <div>
-                        <select class="hidden" name="lang-select" id="lang-select">
-                            <option value="en" id="english">English</option>
-                            <option value="de" id="german">Deutsch</option>
-                        </select>
+                    <div class="language-container" style="position: relative;">
+                        <span class="me-2" id="language-toggle">{{ lang.upper() }}</span>
+                        <div class="dropdown hidden" style="position: absolute;" id="lang-select">
+                            <div class="lang2">
+                                {% if lang == "de" %}
+                                    <div id="toggle-en">EN</div>
+                                {% else %}
+                                    <div id="toggle-de">DE</div>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div> 
