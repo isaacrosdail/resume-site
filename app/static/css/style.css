@@ -1,3 +1,8 @@
 .navbar {
     height: 3.5rem;
 }
+
+/* Currently used for language toggle dropdown menu (Added: 05.04.25) */
+.hidden {
+    display: none;
+}

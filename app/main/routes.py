@@ -10,9 +10,9 @@ main = Blueprint("main", __name__)
 # Main homepage route
 @main.route("/")
 def home():
-    lang = request.args.get("lang", "en")
+    lang = request.cookies.get("lang", "en")
     strings = DE if lang == "de" else EN
-    return render_template("index.html", strings=strings["index"])
+    return render_template("index.html", strings=strings["index"], lang=lang)
 
 # Contact page
 @main.route("/contact")

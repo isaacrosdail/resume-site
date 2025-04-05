@@ -3,10 +3,10 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-    <h2>Create an Account</h2>
+    <h2>{{ strings["prompt"] }}</h2>
     <form method="POST">
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Register</button>
+        <input type="text" name="username" placeholder="{{ strings['username_placeholder']}}">
+        <input type="password" name="password" placeholder="{{ strings['password_placeholder']}}">
+        <button type="submit">{{ strings["btn_register"]}}</button>
     </form>
 {% endblock %}
