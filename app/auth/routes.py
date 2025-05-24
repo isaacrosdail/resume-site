@@ -4,9 +4,9 @@ from flask import Blueprint, render_template, url_for, request, session
 from app.strings_en import STRINGS as EN
 from app.strings_de import STRINGS as DE
 
-auth = Blueprint("auth", __name__)
+auth_bp = Blueprint("auth", __name__)
 
-@auth.route("/register")
+@auth_bp.route("/register")
 def register():
     lang = request.cookies.get("lang", "en")
     strings = DE if lang == "de" else EN
