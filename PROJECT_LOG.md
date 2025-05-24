@@ -12,9 +12,7 @@ Goal(s): See where I'm at and get site opened up
 		3. Use cookie for handshake between
 - Installed Python, nginx, gunicorn
 	- Added config, made symlink
-
-Workflow notes (will be obsolete when I set up actions but):
-- Pull changes, restart gunicorn
+- Workflow: pull changes, restart gunicorn
 
 ## [Sat 24.05.25]
 
