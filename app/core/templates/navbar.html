@@ -1,0 +1,30 @@
+<nav class="bg-gray-800 p-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">        
+
+        <!-- LEFT: Branding + Links -->
+        <div class="flex items-center space-x-6">
+            <span class="text-2xl font-semibold text-gray-300 mr-6">Isaac's Portfolio</span>
+            <a href="{{ url_for('main.home') }}"
+                class="text-gray-300 hover:bg-gray-700 p-2 rounded no-underline {% if request.endpoint == 'main.home' %}bg-gray-700{% endif %}">
+                    Home
+            </a>
+            <a href="{{ url_for('auth.register') }}"
+                class="text-gray-300 hover:bg-gray-700 p-2 rounded no-underline {% if request.endpoint == 'auth.register' %}bg-gray-700{% endif %}">
+                    Register
+            </a>
+        </div>
+
+        <!-- RIGHT: Language Toggle -->
+        <div class="relative text-gray-300">
+            <span class="cursor-pointer" id="language-toggle">{{ lang.upper() }}</span>
+            <div class="dropdown hidden" style="position: absolute;" id="lang-select">
+                    {% if lang == "de" %}
+                        <div id="toggle-en">EN</div>
+                    {% else %}
+                        <div id="toggle-de">DE</div>
+                    {% endif %}
+            </div>
+        </div>
+
+    </div>
+</nav>

@@ -1,0 +1,31 @@
+<!-- Base Class Template -->
+
+<!DOCTYPE html lang="en">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Resume Site{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/output.css')}}">
+
+</head>
+<body class="h-full">
+    <div class="wrapper">
+        <header>
+            {% include 'navbar.html' with context %}
+        </header>
+
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="bg-gray-100 text-center text-sm py-4">
+            &copy; 2025
+        </footer>
+
+        <!-- Always loaded scripts above -->
+        <script src="{{ url_for('static', filename = 'js/global.js') }}"></script>
+        {% block scripts %}{% endblock %}
+    </div>
+</body>
+</html>
