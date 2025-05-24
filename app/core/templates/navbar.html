@@ -8,14 +8,18 @@
                 class="text-gray-300 hover:bg-gray-700 p-2 rounded no-underline {% if request.endpoint == 'main.home' %}bg-gray-700{% endif %}">
                     Home
             </a>
-            <a href="{{ url_for('auth.register') }}"
-                class="text-gray-300 hover:bg-gray-700 p-2 rounded no-underline {% if request.endpoint == 'auth.register' %}bg-gray-700{% endif %}">
-                    Register
-            </a>
         </div>
 
-        <!-- RIGHT: Language Toggle -->
-        <div class="relative text-gray-300">
+        <!-- RIGHT: Language Toggle & (Currently hidden) Link to Register -->
+        <div class="relative text-gray-300 space-x-4">
+            {# Need to sort out positioning for this - will re-introduce when I properly implement an auth functionality
+            <div>
+                <a href="{{ url_for('auth.register') }}"
+                    class="text-gray-300 hover:bg-gray-700 p-2 rounded no-underline {% if request.endpoint == 'auth.register' %}bg-gray-700{% endif %}">
+                        Register
+                </a>
+            </div>
+            #}
             <span class="cursor-pointer" id="language-toggle">{{ lang.upper() }}</span>
             <div class="dropdown hidden" style="position: absolute;" id="lang-select">
                     {% if lang == "de" %}
