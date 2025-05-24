@@ -3,22 +3,17 @@ Project Log
 ## Saturday [06.04.25]
 Goal(s): See where I'm at and get site opened up
 
-Log:
+**Log:**
 - Begin Blueprint for main and auth routes
 - Begin learning for EN/DE toggle (involves cookies & STRINGS dicts)
-Goal for toggle:
-	1. implement cookie in JS for immediate feedback DONE
-	2. on next pg load, read cookie in Flask so lang loads pre-applied DONE
-	3. Use a cookie for handshake between
+	- Goal for toggle:
+		1. Implement cookie in JS for immediate feedback DONE
+		2. On next pg load, read cookie in Flask so lang loads pre-applied DONE
+		3. Use cookie for handshake between
 - Installed Python, nginx, gunicorn
 	- Added config, made symlink
 Workflow notes (will be obsolete when I set up actions but):
-- Pull changes, restart nginx
-	
-	Workflow for future updates to site:
-	Open Linode web terminal and pull changes in local repo there
-	Make sure debug=True is NOT in app.run()
-	Restart Gunicorn using sudo systemctl restart gunicorn
+- Pull changes, restart gunicorn
 
 ## [Sat 24.05.25]
 
