@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
-/* .navbar {
-    height: 3.5rem;
-} */
+/* Using @layer to extend the _base_ (modifying Tailwind's Preflight config so it lets me change the font) */
+@layer base {
+    html {
+        font-family: 'Manrope', sans-serif;
+        font-weight: 500;
+    }
+}
 
 body {
     display: flex;
