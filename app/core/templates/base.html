@@ -8,8 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Resume Site{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/output.css')}}">
+    <!-- Manrope font family -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
+<!-- Have to inline the font here directly since Tailwind purges it if we use, say, 'class="font-sans"' as defined in our tailwind.config.js -->
 <body class="h-full">
     <div class="wrapper">
         <header>
@@ -20,7 +23,8 @@
             {% block content %}{% endblock %}
         </main>
 
-        <footer class="bg-gray-100 text-center text-sm py-4">
+        <!-- Adjust/replace mt-2 to offer better spacing between content and footer, works for now -->
+        <footer class="bg-gray-100 text-center text-sm py-4 mt-2">
             &copy; 2025
         </footer>
 
