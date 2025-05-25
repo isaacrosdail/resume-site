@@ -1,6 +1,6 @@
 {
   "name": "resume-site",
-  "version": "1.0.0",
+  "version": "0.5.0",
   "description": "Website built using Flask/SQL to showcase my skills, projects, and experience.\r To showcase:\r - Copy of Resume\r - Translation portfolio\r - ??",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,7 @@
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.7"
   },
