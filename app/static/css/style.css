@@ -8,6 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    padding-top: 4rem; /* padding here is so content doesn't sit _under_ our now sticky navbar */
 }
 .card-link {
     color: #007bff;
@@ -25,8 +26,16 @@ body {
     /* Tells flex container's child to grow and take up all remaining space */
     flex: 1;
 }
+/* This even do anything currently? */
 .navbar {
     height: 3.5rem;
+}
+/* Styling for sticky navbar */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50; /* stay above other stuff */
 }
 /* Currently used for language toggle dropdown menu (Added: 05.04.25) */
 .hidden {
