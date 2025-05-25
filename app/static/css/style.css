@@ -3,10 +3,18 @@
 /* .navbar {
     height: 3.5rem;
 } */
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+}
+.card-link {
+    color: #007bff;
+}
+.card-link:hover {
+    color:#0053ac;
+    text-decoration: underline;
 }
 .wrapper {
     min-height: 100%;
@@ -17,6 +25,9 @@ body {
     /* Tells flex container's child to grow and take up all remaining space */
     flex: 1;
 }
+.navbar {
+    height: 3.5rem;
+}
 /* Currently used for language toggle dropdown menu (Added: 05.04.25) */
 .hidden {
     display: none;
@@ -24,6 +35,7 @@ body {
 #language-toggle {
     cursor: pointer;
 }
+/* Used for language toggle */
 .dropdown {
     background-color: black;
     box-shadow: 0 4x 8px rgba(0,0,0,0.1);
