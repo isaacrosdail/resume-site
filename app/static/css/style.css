@@ -37,6 +37,12 @@ nav {
     width: 100%;
     z-index: 50; /* stay above other stuff */
 }
+/* Offset scroll position when jumping to anchors
+   Ensures section content isn't hidden under the fixed navbar (72–80px tall)
+*/
+section {
+    scroll-margin-top: 72px;
+}
 /* Currently used for language toggle dropdown menu (Added: 05.04.25) */
 .hidden {
     display: none;

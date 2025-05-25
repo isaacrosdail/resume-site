@@ -24,9 +24,10 @@
             &copy; 2025
         </footer>
 
-        <!-- Always loaded scripts above -->
-        <script src="{{ url_for('static', filename = 'js/global.js') }}"></script>
-        {% block scripts %}{% endblock %}
+        {% block scripts %}
+            <script src="{{ url_for('static', filename = 'js/global.js') }}"></script>
+            <script src="{{ url_for('static', filename = 'js/index.js') }}"></script>
+        {% endblock %}
     </div>
 </body>
 </html>
