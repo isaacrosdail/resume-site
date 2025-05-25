@@ -206,4 +206,6 @@ Note: the rel="noopener noreferrer" part in our anchor elements prevent security
 
 {% endblock %}
 
-{% block scripts %}{% endblock %}
+{% block scripts %}
+    {{ super() }}
+{% endblock %}

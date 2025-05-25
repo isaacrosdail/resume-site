@@ -496,6 +496,9 @@ nav {
   width: 100%;
   z-index: 50;
 }
+section {
+  scroll-margin-top: 72px;
+}
 .hidden {
   display: none;
 }
