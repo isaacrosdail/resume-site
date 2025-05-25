@@ -1,3 +1,5 @@
+{% from "_macros.html" import navlink_classes %}
+
 <nav class="bg-gray-800 p-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">        
 
@@ -5,9 +7,13 @@
         <div class="flex items-center space-x-6">
             <span class="text-2xl font-semibold text-gray-300 mr-6">Isaac's Portfolio</span>
             <a href="{{ url_for('main.home') }}"
-                class="text-gray-300 hover:bg-gray-700 p-2 rounded no-underline {% if request.endpoint == 'main.home' %}bg-gray-700{% endif %}">
+                class="{{ navlink_classes('main.home') }}">
                     Home
             </a>
+
+            <!-- Anchor links for index.html sections -->
+            <a href="#featured-project">Featured Project</a>
+            <a href="#technical-skills">Technical Skills</a>
         </div>
 
         <!-- RIGHT: Language Toggle & (Currently hidden) Link to Register -->
