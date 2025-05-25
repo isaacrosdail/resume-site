@@ -9,7 +9,7 @@
 Essential Sections:
 1. Header/Hero - Name, title (eg "Full Stack Developer"), brief tagline
 2. Contact - Email, LinkedIn, Github, maybe location
-3. Featured Project - Link to main project site with brief desc
+3. Current Project - Link to main project site with brief desc
 4. Skills - Tech stack I'm comfortable with
 5. Experience - Work history (even if limited, internships/relevant projects count -> NASM SnakeByte, ...)
 6. Education - Degree, certs, relevant coursework (Also put Goethe cert stuff here?)
@@ -21,14 +21,18 @@ Nice-to-have sections:
 
 Note: the rel="noopener noreferrer" part in our anchor elements prevent security issues with the new tab? Study this
 -->
+
 <div class="max-w-3xl mx-auto overflow-x-auto px-4 sm:px-8 space-y-6 mt-10">
-        
+    
     <!-- Hero Card -->
     <section id="hero" class="bg-gray-200 p-6 rounded-xl shadow-lg"> <!-- Card container -->
         <h1 class="text-xl font-semibold">Isaac Rosdail</h1>
         <h2 class="text-l font-semibold mb-2">Full Stack Developer</h2>
         <p>
-            isaac.rosdail1@gmail.com | 
+            <a href="mailto:isaac.rosdail1@gmail.com"
+                class="card-link">
+                isaac.rosdail1@gmail.com
+            </a> | 
             <a href="https://www.linkedin.com/in/isaacrosdail/"
                 class="card-link" 
                 target="_blank" 
@@ -38,56 +42,37 @@ Note: the rel="noopener noreferrer" part in our anchor elements prevent security
                 target="_blank" 
                 rel="noopener noreferrer">GitHub</a>
         </p>
+        <p class="mt-2">I'm actively seeking Full Stack / Web Developer positions in Germany.</p>
     </section>
 
-    <!-- Featured Project Section/Card -->
-    <section id="featured-project" class="bg-gray-200 p-6 rounded-xl shadow-lg"> <!-- Card container -->
-        <h1 class="text-xl font-semibold">Featured Project: Project Vesper</h1>
+    <!-- Current Project Section/Card -->
+    <section id="current-project" class="bg-gray-200 p-6 rounded-xl shadow-lg"> <!-- Card container -->
+        <h1 class="text-xl font-semibold">Current Project: Project Vesper</h1>
         <p>Live Demo: 
-            <a href="https://vesper.isaacrosdail.com" class="card-link" target="_blank" rel="noopener noreferrer">vesper.isaacrosdail.com</a>
+            <a href="https://vesper.isaacrosdail.com"
+                class="card-link" 
+                target="_blank" 
+                rel="noopener noreferrer">vesper.isaacrosdail.com</a>
         </p>
-        <p>
-            A personal task and inventory management system built with Flask, Python, and PostgreSQL. Features user authentication, database-driven architecture, containerized deployment, and SSL-secured hosting.
+        <p><!-- Add in later after auth: user authentication -->
+            Full-stack task & inventory management system with real-time UI updates, database-driven architecture, containerized deployment, and SSL-secured hosting.
         </p>
-
+        <hr class="my-4 border-gray-300 border-2">
         <!-- Technical Highlights Box -->
         <div>
             <p>Technical Highlights:</p>
-            <ul>
-                <li>
-                    <span>•</span>
-                    Architected with Flask, PostgreSQL, and Docker for scalable deployment
-                </li>
-                <li>
-                    <span>•</span>
-                    Implemented CI/CD pipeline with GitHub Actions for automated deployment
-                </li>
-                <li>
-                    <span>•</span>
-                    Configured production server with Nginx, Gunicorn, and SSL certification
-                </li>
-                <li>
-                    <span>•</span>
-                    Built real-time UI updates with JavaScript fetch API and event handling
-                </li>
-                <li>
-                    <span>•</span>
-                    <!-- Achieved 100% test coverage with pytest and integration testing -->
-                    Implementing comprehensive test suite with pytest for unit and integration testing.
-                </li>
+            <ul class="list-disc list-inside mt-2">
+                <li>Flask + PostgreSQL + Docker architecture for scalability</li>
+                <li>CI/CD with GitHub Actions for automated deployment</li>
+                <li>Live-hosted with Nginx, Gunicorn, and SSL</li>
+                <li>JavaScript fetch API for real-time frontend updates</li>
+                <!-- GOAL FOR LATER: Achieved 100% test coverage with pytest and integration testing -->
+                <li>Unit tests with Pytest</li>
             </ul>
-            
             <!-- Tech Stack -->
-            <div>
-                <span>Python</span>
-                <span>Flask</span>
-                <span>PostgreSQL</span>
-                <span>Docker</span>
-                <span>SQLAlchemy</span>
-                <span>HTML/CSS/JS</span>
-                <span>Tailwind CSS</span>
-                <span>pytest</span>
-            </div>
+            <p class="text-sm mt-2 text-gray-600">
+                <span class="font-bold">Stack: </span>Python, Flask, PostgreSQL, Docker, SQLAlchemy, HTML/CSS/JS, Tailwind, Pytest
+            </p>
         </div>
 
     </section>
@@ -95,6 +80,7 @@ Note: the rel="noopener noreferrer" part in our anchor elements prevent security
     <!-- Technical Skills Section/Card -->
     <section id="technical-skills" class="bg-gray-200 p-6 rounded-xl shadow-lg"> <!-- Card container -->
         <h1 class="text-xl font-semibold">Technical Skills</h1>
+        <hr class="my-4 border-gray-300 border-2">
         <div style="display: flex; gap: 2rem;">
             <div style="flex: 1;">
                 <h3 class="font-semibold text-gray-900">Backend & Database</h3>
@@ -115,91 +101,62 @@ Note: the rel="noopener noreferrer" part in our anchor elements prevent security
         </div>
     </section>
 
-    <!-- Experience & Education Section/Card -->
-    <section id="experience-education" class="bg-gray-200 p-6 rounded-xl shadow-lg"> <!-- Card container -->
-        <h1 class="text-xl font-semibold">Experience & Education</h1>
+    <!-- Projects & Experience Section/Card -->
+    <section id="projects-experience" class="bg-gray-200 p-6 rounded-xl shadow-lg"> <!-- Card container -->
+    <h1 class="text-xl font-semibold">Projects & Experience</h1>
 
-        <!-- Projects Section -->
-        <div>
-            <h3>Projects & Development Experience</h3>
-
-            <div>
-                <!-- Vesper Project Experience -->
-                <div>
-                    <p>2025 - Present</p>
-                    <h4>Full Stack Developer (Personal Projects)</h4>                   
-                    <ul>
-                        <li>Built and deployed Project Vesper: a task and inventory management web application</li>
-                        <li>Implemented PostgreSQL database architecture</li>
-                        <li>Configured containerized deployment with Docker</li>
-                        <li>Developed responsive frontend with modern HTML/CSS and JavaScript</li>
-                    </ul>
-                </div>
-
-                <!-- SnakeByte Project -->
-                <div>
-                    <p>2023</p>
-                    <h4>SnakeByte - 32-bit NASM Assembly Game</h4>
-                    <div>
-                        <p>
-                            Complex terminal-based game implemented entirely in assembly language. Features included:
-                        </p>
-                        <ul>
-                            <li>• Dynamic memory management for snake growth mechanics</li>
-                            <li>• Portal system with bi-directional teleportation logic</li>
-                            <li>• Collision detection and boundary checking algorithms</li>
-                            <li>• Real-time score tracking and game state management</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <!-- Roject Vesper -->
+        <div class="mt-2">
+            <h4>Full Stack Developer (Personal Projects) | 2025 - Present</h4>                   
+            <ul class="list-disc list-inside text-sm">
+                <li>Built and deployed Project Vesper: a full-stack task & inventory app</li>
+                <li>PostgreSQL DB architecture, Docker deployment, GitHub Actions CI/CD</li>
+                <li>Developed responsive frontend with modern HTML/CSS and JavaScript</li>
+            </ul>
         </div>
-
-        <!-- Education Section -->
-        <div>
-            <h3>Education & Certifications</h3>
-
-            <div>
-                <div>
-                    <p>Bachelor of Science in Computer Science</p>
-                    <p>Dakota State University • May 2024</p>
-                    <p>Dean's List Fall 2022 • Focus: Parallel Computing, Web Development, Algorithms</p>
-                </div>
-
-                <div>
-                    <p>Goethe Institute German Certificate (C1 Level)</p>
-                    <p>Professional Working Proficiency • 2024 </p>
-                </div>
-            </div>
+        <hr class="my-4 border-gray-300 border-2">
+        <!-- SnakeByte Project -->
+        <div class="mt-2">
+            <h4>SnakeByte - 32-bit NASM Assembly Game | 2023</h4>
+            <p>Complex terminal-based game implemented entirely in assembly language. Features included:</p>
+            <ul class="list-disc list-inside text-sm">
+                <li>Dynamic memory management for snake growth mechanics</li>
+                <li>Portal system with bi-directional teleportation logic</li>
+                <li>Collision detection and boundary checking algorithms</li>
+                <li>Real-time score tracking and game state management</li>
+            </ul>
         </div>
-
-        <!-- Work Experience -->
+        <hr class="my-4 border-gray-300 border-2">
+        <!-- Previous Work Experience -->
         <div>
-            <h3>Work Experience</h3>
-            <p>Casey's General Store • Oct 2020 - Apr 2021</p>
-            <p>Coffee Cup Travel Plaza • May 2017 - Aug 2020</p>
-            <p>
-                *Demonstrated reliability, time management, and customer service skills in fast-paced environments.
-            </p>
+            <h3>Customer Service Roles</h3>
+            <p>Casey's General Store (2020-2021) • Coffee Cup Travel Plaza (2017-2020)</p>
+            <p>Demonstrated reliability, time management, and adaptibility in fast-paced environments.</p>
         </div>
     </section>
+    
+    <!-- Education & Certifications Section/Card -->
+    <section id="education" class="bg-gray-200 p-6 rounded-xl shadow-lg"> <!-- Card container -->
+        <h1 class="text-xl font-semibold">Education & Certifications</h1>
+            
+            <!-- Degree -->
+            <div class="mt-2">
+                <p>B.S., Computer Science | Dakota State University • May 2024</p>
+                <p>Dean's List Fall 2022 • Focus: Parallel Computing, Web Development, Algorithms</p>
+            </div>
+            <hr class="my-4 border-gray-300 border-2">
+            <!-- Additional Education / Certifications -->
+            <div>
+                <p>Goethe Institute German Certificate (C1 Level)</p>
+                <p>Professional Working Proficiency • 2024 </p>
+            </div>
+    </section>
 
-    <!-- Call to Action -->
-    <div>
-        <p>
-           I'm actively seeking Full Stack / Web Developer positions in Germany. 
-        </p>
-        <p>
-            Let's discuss how my self-directed learning approach and technical skills can contribute to your team.
-        </p>
-        <a href="mailto:isaac.rosdail1@gmail.com">
-            Get In Touch
-        </a>
-    </div>
-
+    {#
     <!-- Remove, but be sure to mimic dict reference for lang toggle functionality -->
     <h1>{{ strings["intro"] }}</h1>
         <p>Hello!</p>
+    #}
 
 </div>
 
