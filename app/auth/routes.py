@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, url_for, request, session
+from flask import Blueprint, render_template, request, session, url_for
 
+from app.strings_de import STRINGS as DE
 # Facilitate language toggle EN/GER
 from app.strings_en import STRINGS as EN
-from app.strings_de import STRINGS as DE
 
 auth_bp = Blueprint("auth", __name__)
 
