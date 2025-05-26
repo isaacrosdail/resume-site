@@ -1,8 +1,9 @@
 from flask import Flask, render_template
 
+from app.auth.routes import auth_bp
 # Import Blueprints for routes
 from app.core.routes import main_bp
-from app.auth.routes import auth_bp
+
 
 def create_app():
 

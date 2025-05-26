@@ -1,9 +1,8 @@
 from flask import Blueprint, render_template, request
 
-
+from app.strings_de import STRINGS as DE
 # Facilitate language toggle EN/GER
 from app.strings_en import STRINGS as EN
-from app.strings_de import STRINGS as DE
 
 main_bp = Blueprint("main", __name__, template_folder="templates")
 
