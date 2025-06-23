@@ -2,7 +2,6 @@ Project Log
 
 ## Saturday [06.04.25]
 Goal(s): See where I'm at and get site opened up
-
 **Log:**
 - Begin Blueprint for main and auth routes
 - Begin learning for EN/DE toggle (involves cookies & STRINGS dicts)
@@ -15,12 +14,10 @@ Goal(s): See where I'm at and get site opened up
 - Workflow: pull changes, restart gunicorn
 
 ## [Sat 24.05.25]
-
 **Goal(s):**
 1. Get running locally, copy scripts over from main project (build, dev, deploy scripts)
 2. Switch Bootstrap to Tailwind
 3. Update domain config
-
 **Log:**
 1. Synchronize setup to match Vesper's
 	- Copy over navbar from Vesper design
@@ -39,11 +36,9 @@ Goal(s): See where I'm at and get site opened up
 	- Update LinkedIn, link to Vesper
 
 ## [Sun 25.05.25]
-
 **Goal(s):**
 1. Sync testing suite/dependencies between Vesper & resume site
 2. Set up CI/Actions and begin enforcing branch pipeline from Vesper for this project too
-
 **Log:**
 1. Sync testing suite/dependencies/etc between Vesper & resume site
 	- Install pytest/-cov/-mock/-dotenv, add pytest.ini -> add dummy test to confirm we're up
@@ -56,8 +51,8 @@ Goal(s): See where I'm at and get site opened up
 - Added first and second drafts of resume site content
 - Added anchor links for sections
 	- Uses JS in index.js for scrollspy functionality to highlight sections (need to iron this out a bit)
-. Pushed to live! yay
- 
+. Pushed to live!
 **Next Up:**
 1. Set up CI via GitHub Actions
+
 
