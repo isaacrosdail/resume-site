@@ -1,18 +1,18 @@
-from flask import Flask, render_template
+from flask import Flask, send_from_directory
 
-from app.auth.routes import auth_bp
-# Import Blueprints for routes
-from app.core.routes import main_bp
+from app.routes import main_bp
 
 
 def create_app():
 
-    app = Flask(__name__) # Create instance of a Flask web app
-
+    app = Flask(__name__, static_folder="static")
     app.secret_key = "secret-key"
 
-    # Register Route Blueprints
+    # Bypass static for /img/
+    @app.route("/<path:filename>")
+    def serve_image(filename):
+        return send_from_directory('static_src/img', filename)
+
     app.register_blueprint(main_bp)
-    app.register_blueprint(auth_bp)
 
     return app
