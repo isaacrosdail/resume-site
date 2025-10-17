@@ -13,28 +13,25 @@ function handleDotClick(e) {
   const dotWidth = dotElements[0].getBoundingClientRect().width;
   indicator.style.transform = `translateX(${index * (dotWidth + gap)}px)`;
 }
-var sunPos = 75;
-var moonPos = 25;
-function handleThemeToggle(e) {
-  const thing = e.target.closest(".thing");
-  const sun = thing.querySelector(".sun");
-  const moon = thing.querySelector(".moon");
-  sunPos += 50;
-  moonPos += 50;
-  sun.style.offsetDistance = `${sunPos}%`;
-  moon.style.offsetDistance = `${moonPos}%`;
+function updateThemeToggleVisuals(themeValue) {
+  const isLightTheme = themeValue === "light";
+  console.log(`updateThemeToggleVisuals reads theme as: ${themeValue}`);
+  const sun = document.querySelector(".sun");
+  const moon = document.querySelector(".moon");
+  sun.style.offsetDistance = isLightTheme ? "75%" : "25%";
+  moon.style.offsetDistance = isLightTheme ? "25%" : "75%";
+  sun.style.transform = `translate(-50%, -50%) scale(${isLightTheme ? 1.2 : 0.8})`;
+  moon.style.transform = `translate(-50%, -50%) scale(${isLightTheme ? 0.8 : 1.2})`;
 }
-document.addEventListener("click", (e) => {
-  console.log(`Clicked: ${e.target.classList}`);
-  if (e.target.matches(".dot")) {
-    handleDotClick(e);
-  }
-  if (e.target.closest(".thing")) {
-    handleThemeToggle(e);
-  }
-});
-
-// app/static_src/js/theme-manager.js
+function handleThemeToggle(e) {
+  const html = document.querySelector("html");
+  const currentTheme = html.dataset.theme;
+  const newTheme = currentTheme === "light" ? "dark" : "light";
+  console.log(`handleThemeToggle reading currentTheme as: ${currentTheme}`);
+  applyTheme(newTheme);
+  setCookie(newTheme);
+  updateThemeToggleVisuals(newTheme);
+}
 function between(string, left, right) {
   const l = string.indexOf(left) + left.length;
   if (l === -1) return "";
@@ -42,36 +39,30 @@ function between(string, left, right) {
   if (r === -1) r = string.length;
   return string.slice(l, r);
 }
-var themeMap = {
-  sun: "light",
-  moon: "dark",
-  laptop: "system"
-};
-var reverseThemeMap = {
-  light: "sun",
-  dark: "moon",
-  system: "laptop"
-};
 function getCookie() {
-  const themeSelect = document.querySelector("#theme");
-  if (!themeSelect) return;
-  const cookie = document.cookie;
-  const themeValue = between(cookie, "=", ";");
-  themeSelect.value = reverseThemeMap[themeValue] ?? "laptop";
+  const themeValue = between(document.cookie, "=", ";");
+  return themeValue;
 }
-function setCookie() {
-  const themeSelect = document.querySelector("#theme");
-  if (!themeSelect) return;
-  const themeSetting = themeSelect.value;
-  const cookieVal = themeMap[themeSetting] ?? "system";
-  document.cookie = `theme=${cookieVal}; path=/; max-age=31536000`;
+function setCookie(themeValue) {
+  document.cookie = `theme=${themeValue}; path=/; max-age=31536000`;
+  document.querySelector("html").dataset.theme = themeValue;
 }
-function applyThemeFromCookie() {
-  document.querySelector("#theme").dispatchEvent(new Event("change"));
+function applyTheme(themeValue) {
+  const html = document.querySelector("html");
+  html.dataset.theme = themeValue;
 }
 document.addEventListener("DOMContentLoaded", () => {
-  getCookie();
-  applyThemeFromCookie();
-  document.querySelector("#theme").addEventListener("change", setCookie);
+  const themeValue = getCookie();
+  applyTheme(themeValue);
+  updateThemeToggleVisuals(themeValue);
+});
+document.addEventListener("click", (e) => {
+  console.log(`Clicked: ${e.target.classList}`);
+  if (e.target.matches(".dot")) {
+    handleDotClick(e);
+  }
+  if (e.target.closest(".theme-toggle")) {
+    handleThemeToggle(e);
+  }
 });
 //# sourceMappingURL=bundle.js.map

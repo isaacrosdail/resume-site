@@ -5,13 +5,13 @@
 @import url('./base.css') layer(base);
 
 
-.thing {
+.theme-toggle {
     border: 2px solid red;
     position: relative;
     height: 120px;
     width: 120px;
 }
-.thing::before {
+.theme-toggle::before {
     content: "";
     position: absolute;
     width: 120px;  /* diameter: 60px radius * 2 */
@@ -24,7 +24,7 @@
     pointer-events: none;
     z-index: 10; /* make sure it's visible */
 }
-.thing svg {
+.theme-toggle svg {
     height: 40px;
     width: 40px;
 }
@@ -36,14 +36,16 @@
     transform: translate(-50%, -50%);
     offset-path: circle(30px at 65px 65px);
     offset-rotate: 0deg;
-    transition: offset-distance 0.5s ease;
+    transition: offset-distance 0.5s ease, transform 0.5s ease;
 }
-.sun {
+/* .sun {
     offset-distance: var(--sun-pos, 75%);
+    transform: translate(-50%, -50%) scale(1.2);
 }
 .moon {
     offset-distance: var(--moon-pos, 25%);
-}
+    transform: translate(-50%, -50%) scale(0.8);
+} */
 
 :root {
     --nav-offset: 72px;
