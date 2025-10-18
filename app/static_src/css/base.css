@@ -22,7 +22,8 @@ body {
   color: var(--text);
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-default);
-  font-size: var(--font-size-md);
+  /* font-size: var(--font-size-md); */
+  font-size: var(--font-size-base);
 }
 
 /* Box-sizing & border reset */

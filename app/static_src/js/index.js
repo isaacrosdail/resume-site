@@ -26,23 +26,49 @@ function handleDotClick(e) {
 }
 
 function updateThemeToggleVisuals(themeValue) {
-    const isLightTheme = themeValue === 'light';
+    const isPurpleTheme = themeValue === 'purple';
     console.log(`updateThemeToggleVisuals reads theme as: ${themeValue}`);
 
     const sun = document.querySelector('.sun');
     const moon = document.querySelector('.moon');
 
-    sun.style.offsetDistance = isLightTheme ? '75%' : '25%';
-    moon.style.offsetDistance = isLightTheme ? '25%' : '75%';
+    // Purple = moon at top, sun at bottom
+    // Amber = sun at top, moon at bottom
+    sun.style.offsetDistance = isPurpleTheme ? '10%' : '65%';
+    moon.style.offsetDistance = isPurpleTheme ? '65%' : '10%';
 
-    sun.style.transform = `translate(-50%, -50%) scale(${isLightTheme ? 1.2 : 0.8 })`;
-    moon.style.transform = `translate(-50%, -50%) scale(${isLightTheme ? 0.8 : 1.2})`;
+    sun.style.opacity = isPurpleTheme ? '0.3' : '1';
+    moon.style.opacity = isPurpleTheme ? '1' : '0.3';
+
+    // Set linear-gradient in active SVG
+    const sunPath = sun.querySelector('path');
+    const moonPath = moon.querySelector('path');
+    if (isPurpleTheme) {
+        // Moon is active (purple gradient)
+        moonPath.setAttribute('fill', 'url(#moon-gradient)');
+        moonPath.setAttribute('stroke', 'url(#moon-gradient)');
+        moonPath.setAttribute('stroke-width', '1.5');
+        
+        sunPath.setAttribute('fill', 'var(--text)');
+        sunPath.setAttribute('stroke', 'var(--text)');
+        sunPath.setAttribute('stroke-width', '2.2');
+    } else {
+        // Sun is active (amber gradient)
+        sunPath.setAttribute('fill', 'url(#sun-gradient)');
+        sunPath.setAttribute('stroke', 'url(#sun-gradient)');
+        sunPath.setAttribute('stroke-width', '1.5');
+        
+        moonPath.setAttribute('fill', 'var(--text)');
+    }
+
+    sun.style.transform = `translate(-50%, -50%) scale(${isPurpleTheme ? 0.4 : 1.2})`;
+    moon.style.transform = `translate(-50%, -50%) scale(${isPurpleTheme ? 1.2 : 0.4})`;
 }
 
 function handleThemeToggle(e) {
     const html = document.querySelector('html');
     const currentTheme = html.dataset.theme;
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    const newTheme = currentTheme === 'purple' ? 'amber' : 'purple';
     console.log(`handleThemeToggle reading currentTheme as: ${currentTheme}`);
 
     applyTheme(newTheme);
