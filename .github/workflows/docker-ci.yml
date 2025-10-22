@@ -1,0 +1,30 @@
+name: Resume Site CI/CD
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - 'PROJECT_LOG.md'
+      - 'README.md'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Linode
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.LINODE_HOST }}
+          username: ${{ secrets.LINODE_USERNAME }}
+          key: ${{ secrets.LINODE_SSH_KEY }}
+          port: ${{ secrets.LINODE_PORT }}
+          script: |
+            cd ${{ secrets.RESUME_PATH }}
+            git fetch origin main && git reset --hard origin/main
+
+            sudo npm run build
+
+            docker compose -f docker-compose.prod.yml down
+            docker compose -f docker-compose.prod.yml build --no-cache
+            docker compose -f docker-compose.prod.yml up -d

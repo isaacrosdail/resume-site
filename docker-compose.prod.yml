@@ -1,0 +1,13 @@
+
+services:
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5001:5001"
+
+    # Bind mount esbuild output
+    volumes:
+      - ./app/static:/app/static:ro

@@ -1,0 +1,18 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy everything from the current dir to /app in the container
+COPY . .
+# Copy static source assets to static directory
+COPY app/static_src/img app/static/img
+COPY app/static_src/resume app/static/resume
+
+ENV FLASK_APP=app.py
+
+EXPOSE 5001
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5001", "wsgi:app"]

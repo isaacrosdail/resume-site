@@ -1,0 +1,97 @@
+
+/* Core navbar structure/styling */
+nav {
+    padding: var(--space-md);
+}
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: clamp(var(--gap-sm), 1.5vw, var(--gap-md));
+}
+.nav-right {
+    margin-left: auto;
+}
+
+
+/* Then: Branding -> social links -> Theme toggle */
+.branding {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-right: var(--space-lg);
+}
+
+.social-links {
+    display: inline-flex;
+    gap: var(--gap-sm);
+}
+.pill svg {
+    display: inline-flex;
+    width: 15px;
+    height: 15px;
+    color: var(--text);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity var(--hover-ease), transform var(--hover-ease);
+}
+.pill {
+    position: relative;
+    isolation: isolate;
+    display: inline-block;
+    padding: var(--space-sm);
+    text-shadow: var(--text-shadow);
+    transition: text-shadow 0.2s ease-in-out;
+}
+.pill::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--bg-dark);
+    border-radius: var(--border-radius);
+    transition: opacity var(--hover-ease);
+}
+.pill:hover::before {
+    opacity: 0;
+}
+.pill:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, var(--gradient-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: var(--text-shadow-hover);
+}
+.pill:hover svg {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.theme-toggle {
+    position: relative;
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
+}
+.theme-toggle svg {
+    height: 35px;
+    width: 35px;
+}
+.sun,
+.moon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    offset-path: circle(15px at 50px 55px);
+    offset-rotate: 0deg;
+    transition:
+        offset-distance 0.5s var(--ui-ease),
+        transform 0.5s var(--ui-ease);
+}

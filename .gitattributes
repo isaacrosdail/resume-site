@@ -1,0 +1,7 @@
+* text eol=lf
+
+# Binary files: don't diff/modify line endings
+*.png binary
+*.jpg binary
+*.gif binary
+*.pdf binary

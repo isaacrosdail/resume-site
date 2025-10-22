@@ -1,0 +1,114 @@
+/* ==== DESIGN TOKENS ==== */
+/* Variables for color, spacing, typography */
+
+
+/*
+* Architecture:
+* 1. Theme tokens (--light-*, --dark-*) = raw color values
+* 2. Semantic tokens (--bg-dark, --accent-text) = translation layer to decouple
+* 3. Theme switching = remaps semantic tokens to active theme.
+*
+* Components stay theme-agnostic: HTML unchanged, CSS handles complexity
+* Would like to support more themes, esp. once Firefox supports container style queries
+* 
+* Note: For inverted text, map to the opposite theme's values in mappings.
+*/
+:root {
+    --font-family-primary: 'Manrope', sans-serif;
+    --font-weight-default: 400;
+    --font-weight-semibold: 600;
+    --font-size-base: clamp(1rem, 0.6vw + 0.4rem, 1.125rem);
+
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.2rem;
+    --font-size-xl: 1.5rem;
+    --font-size-xxl: 2rem;
+    --line-height-default: 1.5rem;
+
+    --border-default: 1px solid var(--border-color);
+    --border-radius: 0.5rem;
+    --border-radius-mild: 0.3rem;
+    --border-radius-top: 0.5rem 0.5rem 0 0;
+
+    --gap-xs: 0.25rem;
+    --gap-sm: 0.5rem;
+    --gap-md: 1rem;
+    --gap-lg: 1.5rem;
+
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+
+    --transition-fade: 0.2s ease;
+
+    /* Used for sun/moon transitions currently */
+    --ui-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --hover-ease: 0.2s ease;
+
+    /* --text-shadow: 0 0 6px oklch(70% 0.22 280 / 0.6);
+    --text-shadow-hover: 0 0 12px oklch(70% 0.25 280 / 0.9);
+    --gradient-glow:
+       oklch(55% 0.25 280),
+       oklch(60% 0.22 270),
+       oklch(50% 0.20 285); */
+
+    /* Misc */
+    --header-border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    --glow-intensity: 0.15;
+    --glow-intensity-hover: 0.3;
+    --glow-blur: blur(1rem);
+
+
+    /* STATIC BASE (always dark mode) */
+    /* Background Hierarchy */
+    --bg-dark: oklch(28% 0.04 260);
+    --bg: oklch(32% 0.04 260); /* blended card color */
+    --bg-light: oklch(33% 0 0);
+
+    /* Text Hierarchy */
+    --text: oklch(95% 0 0);
+    --text-muted: oklch(75% 0 0);
+
+    /* Borders */
+    --border-color: oklch(55% 0 0 / 0.3);
+    --box-shadow: 0 0 20px oklch(100% 0 0 / 0.1);
+
+    /* THEME DEFINITIONS (Purple & Amber) */
+
+    /* Purple/Moon Theme DEFAULT */
+    --purple-text-shadow: 0 0 6px oklch(70% 0.22 280 / 0.6);
+    --purple-text-shadow-hover: 0 0 12px oklch(70% 0.25 280 / 0.9);
+    --purple-theme-border-color: oklch(55% 0.15 280);
+    --purple-gradient-glow:
+       oklch(55% 0.25 280),
+       oklch(60% 0.22 270),
+       oklch(50% 0.20 285);
+
+    
+    /* Amber/Sun Theme Definitions */
+    --amber-text-shadow: 0 0 6px oklch(70% 0.18 50 / 0.6);
+    --amber-text-shadow-hover: 0 0 12px oklch(75% 0.20 50 / 0.9);
+    --amber-theme-border-color: oklch(55% 0.15 50);
+    --amber-gradient-glow:
+       oklch(70% 0.24 40),
+       oklch(75% 0.20 55),
+       oklch(65% 0.22 48);
+}
+
+/* User Override: Lets the user manually override the system preference with theme select buttons */
+:root[data-theme="amber"] {
+    --text-shadow: var(--amber-text-shadow);
+    --text-shadow-hover: var(--amber-text-shadow-hover);
+    --gradient-glow: var(--amber-gradient-glow);
+    --theme-border-color: var(--amber-theme-border-color);
+}
+
+:root[data-theme="purple"] {
+    --text-shadow: var(--purple-text-shadow);
+    --text-shadow-hover: var(--purple-text-shadow-hover);
+    --gradient-glow: var(--purple-gradient-glow);
+    --theme-border-color: var(--purple-theme-border-color);
+}

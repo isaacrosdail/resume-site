@@ -1,0 +1,277 @@
+
+@layer base, components, navigation, utilities, app;
+
+@import './tokens.css';
+@import url('./base.css') layer(base);
+@import url('./components.css') layer(components);
+@import url('./navigation.css') layer(navigation);
+
+@layer utilities {
+    .gradient-text {
+        background: linear-gradient(90deg, var(--gradient-glow));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+    font-size: clamp(0.875rem, 0.6vw + 0.6rem, 1rem);
+    color: var(--text-muted);
+    padding-left: var(--space-sm);
+    }
+    .accent-text {
+        color: var(--theme-border-color);
+    }
+}
+
+
+/* Projects Carousel */
+.slider-container {
+    /* position: relative; */
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    background: var(--bg);
+}
+/* Hide scrollbar (Firefox, then Webkit for Chrome/Safari*/
+.slider-track{
+    scrollbar-width: none;
+}
+.slider::-webkit-scrollbar {
+    display: none;
+}
+.slider-track{
+    display: flex;
+    gap: var(--gap-sm);
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
+    overflow-x: auto;
+    overscroll-behavior-inline: contain; /* contains scrolling behavior if you get to the end, only focused on inline cause we're only scrolling on the inline axis */
+}
+
+.slider-element {
+    display: grid;
+    gap: var(--gap-sm);
+    flex: 0 0 100%; /* take up exactly 100% of flex container width (slider) */
+    scroll-snap-align: start; /* pairs well with scroll-snap-type? */
+    grid-template-rows: min-content; /* first row being created (image) is the smallest size, so it's gonna fit the image so it can't overflow? */
+    grid-template-columns: 1fr 1fr;
+    padding: var(--space-sm);
+}
+/* Slideshow Styling */
+.slider-element img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    /* aspect-ratio: 16/9; */
+    /* object-fit: contain; prevents aspect-ratio from 'squishing' images, instead might crop them? */
+    border-radius: var(--border-radius);
+    border: 2px solid var(--theme-border-color);
+}
+.slider-element h1 {
+    grid-column: 1 / -1;
+}
+.project-description,
+#experience-education {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+}
+
+h1, h2 {
+    font-weight: 700;
+}
+h1 {
+    font-size: clamp(1.3rem, 1.2vw + 1rem, 1.5rem);
+    padding-bottom: var(--space-xs);
+}
+h2 {
+    font-size: clamp(1.1rem, 0.8vw + 0.9rem, 1.4rem);
+}
+ul {
+    padding-left: var(--space-lg);
+}
+hr {
+    height: 2px;
+    border-top: 3px solid var(--border-color);
+}
+
+li {
+    position: relative;
+    /* margin-bottom: var(--space-sm); */
+}
+li::before {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 0.4em;
+    width: 0;
+    height: 0;
+    border-top: 0.35em solid transparent;
+    border-bottom: 0.35em solid transparent;
+    border-left: 0.5em solid var(--theme-border-color, #ff9900);
+}
+/* Slider dots prototyping! */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--gap-sm);
+    width: min-content;
+    position: relative; /* context for .indicator */
+
+    margin: 0 auto; /* center within parent */
+    border-radius: 999px;
+    padding: var(--space-xs);
+    background: var(--bg-dark);
+    border: 1px solid var(--bg);
+}
+.dot,
+.indicator {
+    border-radius: 50%;
+    border: 1px solid var(--text-muted);
+    height: 20px;
+    width: 20px;
+}
+.dot {
+    background: var(--bg);
+}
+.indicator {
+    position: absolute;
+    left: 7%;
+    background: linear-gradient(90deg, var(--gradient-glow));
+    opacity: 0.7;
+    transition: transform var(--hover-ease);
+}
+
+
+/* ===================================
+    APP LAYOUT / PAGE SHELL
+   ===================================*/
+
+/* Flex container for header/content/footer */
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: calc(1.5 * var(--gap-lg));
+    background-color: var(--bg-dark);
+}
+/* Main content area: fills remaining viewport space below navbar */
+.content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    max-width: clamp(35rem, 90vw, 90rem);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2rem);
+    gap: var(--gap-lg);
+}
+
+
+.demo-link {
+    display: inline-block;
+    padding: var(--space-sm);
+}
+.demo-link {
+    font-size: var(--font-size-base);
+    transition: 
+        transform var(--hover-ease),
+        box-shadow var(--hover-ease);
+}
+.demo-link svg {
+    opacity: 0;
+    display: inline-flex;
+    height: 15px;
+    width: 15px;
+    transform: translateX(-4px);
+    transition: opacity var(--hover-ease), transform var(--hover-ease);
+}
+.demo-link:hover svg {
+    opacity: 1;
+    transform: translateX(0);
+}
+.demo-link:hover {
+    transform: translateY(-2px);
+    text-shadow: var(--text-shadow-hover);
+}
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    background-color: var(--bg);
+    border: 2px solid var(--border-color);
+}
+.glow {
+    position: relative;
+    isolation: isolate;
+
+    border: 8px solid transparent;
+    border-radius: var(--border-radius);
+}
+.glow::before,
+.glow::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    opacity: var(--glow-intensity);
+    transition: opacity var(--hover-ease);
+    filter: var(--glow-blur);
+}
+.glow::before {
+    z-index: -1;
+    background: var(--bg, canvas);
+    inset: 0.2rem;
+}
+.glow::after {
+    z-index: -2;
+    background: conic-gradient(from -90deg, var(--gradient-glow));
+    inset: -0.6rem;
+}
+.glow:hover::before,
+.glow:hover::after {
+    opacity: var(--glow-intensity-hover);
+}
+.glow:hover::before {
+    inset: 0.5rem;
+}
+.glow:hover::after {
+    inset: -1.5rem;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--bg);
+    backdrop-filter: blur(8px);
+    border-bottom: var(--header-border-bottom);
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    font-size: var(--font-size-sm);
+}
+
+
+
+
+@media(width <= 768px) {
+    .slider-element {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

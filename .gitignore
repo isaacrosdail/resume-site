@@ -1,0 +1,21 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv
+venv/
+
+# Also VSCode counter extension
+.VSCodeCounter/
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Node
+node_modules/
+
+# Build artifacts
+app/static/**

@@ -1,0 +1,133 @@
+
+{% import '_macros.html' as ui %}
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glow">
+    <div class="slider-container card" role="region" aria-label="Project portfolio carousel">
+        <div class="slider-track" role="list">
+            <div class="slider-element" role="listitem" aria-label="Slide 1 of 3: Project Vesper">
+                <h1>
+                    Project Vesper
+                    <a href="https://vesper.isaacrosdail.com"
+                        class="gradient-text demo-link"
+                        target="_blank"
+                        rel="noopener noreferrer">Live Demo
+                        {{ ui.link_arrow_svg() }}
+                    </a>
+                    <span class="subtitle">Self-built productivity system (2025 - Present)</span>
+                </h1>
+                
+                <img src="/vesper.png" alt="Screenshot of Project Vesper dashboard">
+                <div class="project-description">
+                    <p>
+                        A productivity system I'm building to track tasks, habits, and 
+                        inventory. Designed to surface insights and minimize time waste 
+                        rather than just checking boxes off lists.
+                    </p>
+                    <p>Built as a long-term project I'll actually use, prioritizing sturdy architecture over quick feature adds.</p>
+                    <ul>
+                        <li>Flask + PostgreSQL with SQLAlchemy</li>
+                        <li>Docker deployment with CI/CD pipeline on VPS</li>
+                        <li>Unit tested with Pytest to maintain reliability as it grows</li>
+                        <li>Real-time UI updates with a modern JS frontend</li>
+                        <li>Nginx reverse proxy with SSL for production demo</li>
+                    </ul>
+                    <p>
+                        <span class="accent-text">Learning focus:</span>
+                        Database schema design, API patterns, and understanding how real software complexity is handled.
+                    </p>
+                </div>
+            </div>
+            <div class="slider-element"  role="listitem" aria-label="Slide 2 of 3: SnakeByte">
+                <h1>
+                    SnakeByte
+                    <a href="https://snakebyte.isaacrosdail.com"
+                        class="gradient-text demo-link"
+                        target="_blank"
+                        rel="noopener noreferrer">Live Demo
+                        {{ ui.link_arrow_svg() }}
+                    </a>
+                    <span class="subtitle">Snake game written in x86 assembly (2023)</span>
+                </h1>
+                <picture>
+                    <source
+                        srcset="../img/slide_snake_placeholder.png"
+                        media="(prefers-reduced-motion: reduce)"
+                    />
+                    <img
+                        src="/snakebyte_gameplay.gif"
+                        alt="SnakeByte gameplay"
+                        loading="lazy"
+                    >
+                </picture>
+                <div class="project-description">
+                    <p>
+                        Built to understand low-level systems programming.
+                        Uses Ncurses for terminal display.
+                    </p>
+                    <ul>
+                        <li>Dynamic memory management for growing snake segments</li>
+                        <li>Portal teleportation system with bi-directional warping</li>
+                        <li>Custom level loader with file parsing</li>
+                        <li>Collision detection (walls, self, boundaries, food)</li>
+                        <li>Manual 2D coordinate-to-1D memory addressing</li>
+                        <li>Hard mode with dynamic speed scaling</li>
+                    </ul>
+                    <p>
+                        <span class="accent-text">Learning focus:</span>
+                        Stack/heap management, pointer arithmetic, circular buffers, and thinking at the instruction level - understanding where
+                        each layer (registers, memory, stack) starts and ends.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="slider-dots">
+            <button class="dot" aria-label="Go to slide 1" aria-current="true"></button>
+            <button class="dot" aria-label="Go to slide 2"></button>
+            <div class="indicator"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Education & Certifications Section/Card -->
+<div class="glow">
+    <section id="experience-education" class="card">
+        <h1>Experience</h1>
+        <!-- Previous Work Experience -->
+        <div>
+            <ul>
+                <li>
+                    <strong>Casey's General Store</strong>
+                    <span class="subtitle">(2020 - 2021)</span><br>
+                    Demonstrated reliability, time management, and adaptibility
+                </li>
+                <li>
+                    <strong>Coffee Cup Travel Plaza</strong>
+                    <span class="subtitle">(2017 - 2020)</span><br>
+                    Handled fast-paced customer-facing environments.
+                </li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <h1>Education & Certifications</h1>
+        <ul>
+            <li>
+                <strong>B.S., Computer Science</strong><br>
+                Dakota State University • May 2024<br>
+                <span class="subtitle">Dean's List Fall 2022 • Focus: Parallel Computing, Web Dev, Algorithms</span>
+            </li>
+            <li>
+                <strong>German Certificate (C1)</strong><br>
+                Goethe Institute • Professional Working Proficiency (2024)
+            </li>
+        </ul>
+    </section>
+</div>
+
+
+{% endblock %}
