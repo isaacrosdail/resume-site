@@ -157,24 +157,15 @@ function updateThemeToggleVisuals(themeValue) {
  * Toggles between purple & amber themes
  */
 function handleThemeToggle() {
-    const html = document.querySelector('html');
+    const html = document.documentElement;
     const toggleBtn = document.querySelector('.theme-toggle');
     const currentTheme = html.dataset.theme;
-    const newTheme = currentTheme === 'purple' ? 'amber' : 'purple';
+    const newTheme = (currentTheme === 'purple' ? 'amber' : 'purple');
 
-    applyTheme(newTheme);
+    html.dataset.theme = newTheme;
     setCookie('theme', newTheme);
     updateThemeToggleVisuals(newTheme);
-    toggleBtn.setAttribute('aria-pressed', newTheme === 'purple' ? 'true' : 'false');
-}
-
-/**
- * Sets data-theme attribute on <html> element
- * @param {*} themeValue 
- */
-function applyTheme(themeValue) {
-    const html = document.querySelector('html');
-    html.dataset.theme = themeValue;
+    toggleBtn.setAttribute('aria-pressed', String(newTheme === 'purple'));
 }
 
 // =================
@@ -182,34 +173,29 @@ function applyTheme(themeValue) {
 // =================
 
 /**
- * Retrieves a cookie value by key name
- * @param {string} name - Cookie name to search for
- * @returns {string|null} - Cookie value or null if not found
+ * Returns value of a cookie by key name.
+ * 
+ * @param name - Cookie name to search for
+ * @returns Cookie value or null if not found
  */
 function getCookie(name) {
-    const cookie = document.cookie;
-    if (!cookie.includes(`${name}=`)) return null;
+    const cookies = document.cookie.split('; ');
+    const targetCookie = cookies.find(x => x.startsWith(`${name}=`));
+    if (!targetCookie) return null;
 
-    const cookieStartIdx = cookie.indexOf(name);
-    const valueStartIdx = cookieStartIdx + (name + '=').length;
-    const valueEndIdx = cookie.indexOf(';', valueStartIdx);
-
-    // Slice to end of string if ; not found
-    if (valueEndIdx === -1) {
-        return cookie.slice(valueStartIdx);
-    }
-
-    return cookie.slice(valueStartIdx, valueEndIdx);
+    const [key, value] = targetCookie.split('=');
+    return value
 }
 
 /**
- * Sets a cookie with 1-year expiration
- * @param {string} name - Cookie name
- * @param {string} value - Cookie value
+ * Writes a cookie with configurable expiration.
+ * @param name - Cookie name
+ * @param value - Value to store
+ * @param maxAge - Expiration in seconds (default: 1 year)
+ * @example setCookie('theme', 'dark')
  */
-function setCookie(name, value) {
-    document.cookie = `${name}=${value}; path=/; max-age=31536000`;
-    document.querySelector('html').dataset.theme = value;
+function setCookie(name, value, maxAge = 31536000) {
+    document.cookie = `${name}=${value}; path=/; max-age=${maxAge}`;
 }
 
 // ======================
@@ -218,9 +204,9 @@ function setCookie(name, value) {
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize theme from cookie or default to purple
-    let themeValue = getCookie('theme') || 'purple';
+    let themeValue = getCookie('theme') ?? 'purple';
 
-    applyTheme(themeValue);
+    document.documentElement.dataset.theme = themeValue;
     updateThemeToggleVisuals(themeValue);
 
     if (!getCookie('theme')) {
