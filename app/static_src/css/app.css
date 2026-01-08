@@ -1,17 +1,22 @@
 
-@layer base, components, navigation, utilities, app;
+@layer base, navigation, utilities, app;
 
 @import './tokens.css';
 @import url('./base.css') layer(base);
-@import url('./components.css') layer(components);
 @import url('./navigation.css') layer(navigation);
+
 
 @layer utilities {
     .gradient-text {
-        background: linear-gradient(90deg, var(--gradient-glow));
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: var(--theme-border-color);
+    }
+    @supports (-webkit-background-clip: text) {
+        .gradient-text {
+            background: linear-gradient(90deg, var(--gradient-glow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     }
     .subtitle {
     font-size: clamp(0.875rem, 0.6vw + 0.6rem, 1rem);
@@ -22,7 +27,6 @@
         color: var(--theme-border-color);
     }
 }
-
 
 /* Projects Carousel */
 .slider-container {

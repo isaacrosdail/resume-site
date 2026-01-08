@@ -1,85 +1,5 @@
 
-// =================
-// Slider / Carousel
-// =================
-const sliderTrack = document.querySelector('.slider-track');
-const sliderDots = document.querySelector('.slider-dots');
-const dotElements = [...sliderDots.children];
-const indicator = sliderDots.querySelector('.indicator');
-
-/**
- * Handles dot click - Scrolls to corresponding slide.
- * @param {MouseEvent} e - Click event
- */
-function handleDotClick(e) {
-    const index = dotElements.indexOf(e.target);
-    const sliderElements = [...sliderTrack.children];
-    const targetOffset= sliderElements[index].offsetLeft;
-
-    sliderTrack.scrollTo({ left: targetOffset});
-    moveIndicator(index);
-}
-
-// Update indicator when user scrolls manually
-sliderTrack.addEventListener('scroll', () => {
-    const slideWidth = sliderTrack.clientWidth;
-    const currentIndex = Math.round(sliderTrack.scrollLeft / slideWidth);
-    moveIndicator(currentIndex);
-})
-
-// Respect left/right arrow keys for carousel navigation
-document.addEventListener('keydown', (e) => {
-    // Check if focus is inside the carousel
-    const carouselContainer = document.querySelector('.slider-container');
-    if (!carouselContainer.contains(document.activeElement)) {
-        return;
-    }
-
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        e.preventDefault();
-
-        const slideWidth = sliderTrack.clientWidth;
-        const currentIndex = Math.round(sliderTrack.scrollLeft / slideWidth);
-
-        let newIndex;
-        if (e.key === 'ArrowLeft') {
-            newIndex = Math.max(0, currentIndex - 1);
-        } else {
-            const maxIndex = dotElements.length;
-            newIndex = Math.min(maxIndex, currentIndex + 1);
-        }
-
-        // Scroll to new slide & move focus
-        const sliderElements = [...sliderTrack.children];
-        const targetOffset = sliderElements[newIndex].offsetLeft;
-        sliderTrack.scrollTo({ left: targetOffset });
-        dotElements[newIndex].focus();
-    }
-})
-
-/**
- * Moves indicator dot to match slide index.
- * @param {number} index - Index to move indicator to
- */
-function moveIndicator(index) {
-    const styles = getComputedStyle(sliderDots);
-    const gap = parseFloat(styles.gap);
-    const dotWidth = dotElements[0].getBoundingClientRect().width;
-    indicator.style.transform = `translateX(${(index * (dotWidth + gap))}px)`;
-
-    // Update aria-current
-    dotElements.forEach((dot, i) => {
-        if (i === index) {
-            dot.setAttribute('aria-current', 'true');
-        } else {
-            dot.removeAttribute('aria-current');
-        }
-    });
-}
-
-// =================
-// Theme Toggle
-// =================
+type ThemeValue = 'amber' | 'purple';
 
 const THEME_CONFIG = {
     active: {
@@ -100,16 +20,22 @@ const THEME_CONFIG = {
     }
 };
 
+
+// =================
+// Theme Toggle
+// =================
+
+
 /**
  * Updates visual state of theme toggle (sun/moon positions, gradients, sizes)
  * @param {string} themeValue - Theme to update visuals to (eg, purple or amber)
  */
-function updateThemeToggleVisuals(themeValue) {
-    const isPurpleTheme = themeValue === 'purple';
-    const sun = document.querySelector('.sun');
-    const moon = document.querySelector('.moon');
-    const sunPath = sun.querySelector('path');
-    const moonPath = moon.querySelector('path');
+function updateThemeToggleVisuals(themeValue: ThemeValue) {
+    const isPurpleTheme = (themeValue === 'purple');
+    const sun = document.querySelector<SVGElement>('.sun')!;
+    const moon = document.querySelector<SVGElement>('.moon')!;
+    const sunPath = sun.querySelector<SVGPathElement>('path')!;
+    const moonPath = moon.querySelector<SVGPathElement>('path')!;
 
     // Position: purple = moon top, amber = sun top
     sun.style.offsetDistance = isPurpleTheme ? THEME_CONFIG.inactive.position : THEME_CONFIG.active.position;
@@ -158,11 +84,11 @@ function updateThemeToggleVisuals(themeValue) {
  */
 function handleThemeToggle() {
     const html = document.documentElement;
-    const toggleBtn = document.querySelector('.theme-toggle');
-    const currentTheme = html.dataset.theme;
-    const newTheme = (currentTheme === 'purple' ? 'amber' : 'purple');
+    const toggleBtn = document.querySelector<HTMLButtonElement>('.theme-toggle')!;
+    const currentTheme = html.dataset["theme"];
+    const newTheme: ThemeValue = (currentTheme === 'purple' ? 'amber' : 'purple');
 
-    html.dataset.theme = newTheme;
+    html.dataset["theme"] = newTheme;
     setCookie('theme', newTheme);
     updateThemeToggleVisuals(newTheme);
     toggleBtn.setAttribute('aria-pressed', String(newTheme === 'purple'));
@@ -178,12 +104,12 @@ function handleThemeToggle() {
  * @param name - Cookie name to search for
  * @returns Cookie value or null if not found
  */
-function getCookie(name) {
+function getCookie(name: string) {
     const cookies = document.cookie.split('; ');
     const targetCookie = cookies.find(x => x.startsWith(`${name}=`));
     if (!targetCookie) return null;
 
-    const [key, value] = targetCookie.split('=');
+    const [_key, value] = targetCookie.split('=');
     return value
 }
 
@@ -194,32 +120,27 @@ function getCookie(name) {
  * @param maxAge - Expiration in seconds (default: 1 year)
  * @example setCookie('theme', 'dark')
  */
-function setCookie(name, value, maxAge = 31536000) {
+function setCookie(name: string, value: string, maxAge = 31536000) {
     document.cookie = `${name}=${value}; path=/; max-age=${maxAge}`;
 }
 
-// ======================
-// Init / Event Listeners
-// ======================
 
-document.addEventListener('DOMContentLoaded', () => {
+export function init() {
     // Initialize theme from cookie or default to purple
-    let themeValue = getCookie('theme') ?? 'purple';
+    const raw = getCookie('theme');
+    const themeValue: ThemeValue =(raw === 'amber' || raw === 'purple') 
+        ? raw
+        : 'purple';
 
-    document.documentElement.dataset.theme = themeValue;
+    document.documentElement.dataset["theme"] = themeValue;
     updateThemeToggleVisuals(themeValue);
-
     if (!getCookie('theme')) {
         setCookie('theme', themeValue);
     }
-});
 
-// Delegated click handler for dots & theme toggle
-document.addEventListener('click', (e) => {
-    if (e.target.matches('.dot')) {
-        handleDotClick(e);
-    }
-    if (e.target.closest('.theme-toggle')) {
-        handleThemeToggle();
-    }
-})
+    document.addEventListener('click', (e) => {
+        if ((e.target as HTMLButtonElement).closest('.theme-toggle')) handleThemeToggle();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', init);
